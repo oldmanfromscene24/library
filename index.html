@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".\styles.css">
+    <title>Library</title>
+</head>
+
+<body>
+    <dialog>
+        <form>
+            <fieldset>
+                <legend>Insert book details</legend>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author">
+                <label for="pages">Pages:</label>
+                <input type="number" id="pages" name="pages">
+                <br>
+                <input type="radio" id="yes" name="read" value="read">
+                <label for="yes">Read</label>
+                <input type="radio" id="no" name="read" value="not read">
+                <label for="no">Not read</label>
+                <br>
+                <button type="submit">Save</button>
+            </fieldset>
+        </form>
+        <button autofocus>Close without saving</button>
+    </dialog>
+    <button>New Book</button>
+</body>
+<script src=".\script.js"></script>
+
+</html>
