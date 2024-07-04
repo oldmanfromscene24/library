@@ -34,11 +34,36 @@ document.querySelector("form").addEventListener("submit", function (e) {
   let formData = new FormData(e.target);
   let form = document.querySelector("form");
   form.reset();
+
+  //create Book
   const book = new Book();
   book.title = Object.fromEntries(formData).title;
   book.author = Object.fromEntries(formData).author;
   book.pages = Object.fromEntries(formData).pages;
   book.read = Object.fromEntries(formData).read;
+
+  //add Book to array
   myLibrary.push(book);
-  console.log(myLibrary);
+
+  //add Book to DOM
+  let index = myLibrary.indexOf(book);
+  addBook(book, index);
 });
+
+function addBook(book, index) {
+  //display book
+  const container = document.querySelector(".container");
+  const card = document.createElement("div");
+  card.className = "card";
+  card.dataset.index = index;
+  card.textContent = book.title + " " + index;
+  container.appendChild(card);
+
+  //remove button
+  const button = document.createElement("button");
+  button.textContent = "Remove";
+  card.appendChild(button);
+  button.addEventListener("click", function (e) {
+    alert("REMOVE");
+  });
+}

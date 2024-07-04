@@ -14,13 +14,13 @@
             <fieldset>
                 <legend>Insert book details</legend>
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title">
+                <input type="text" id="title" name="title" required>
                 <label for="author">Author:</label>
-                <input type="text" id="author" name="author">
+                <input type="text" id="author" name="author" required>
                 <label for="pages">Pages:</label>
-                <input type="number" id="pages" name="pages">
+                <input type="number" id="pages" name="pages" required>
                 <br>
-                <input type="radio" id="yes" name="read" value="read">
+                <input type="radio" id="yes" name="read" value="read" required>
                 <label for="yes">Read</label>
                 <input type="radio" id="no" name="read" value="not read">
                 <label for="no">Not read</label>
@@ -28,9 +28,10 @@
                 <button type="submit">Save</button>
             </fieldset>
         </form>
-        <button autofocus>Close without saving</button>
+        <button autofocus>Close</button>
     </dialog>
     <button>New Book</button>
+    <div class="container"></div>
 </body>
 <script src=".\script.js"></script>
 
