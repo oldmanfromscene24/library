@@ -12,21 +12,21 @@ closeButton.addEventListener("click", () => {
 });
 
 function Book(title, author, pages, read) {
-  //   this.title = title;
-  //   this.author = author;
-  //   this.pages = pages;
-  //   this.read = read;
-  this.info = function () {
-    return (
-      this.title +
-      " by " +
-      this.author +
-      ", " +
-      this.pages +
-      " pages, " +
-      this.read
-    );
-  };
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+  // this.info = function () {
+  //   return (
+  //     this.title +
+  //     " by " +
+  //     this.author +
+  //     ", " +
+  //     this.pages +
+  //     " pages, " +
+  //     this.read
+  //   );
+  // };
 }
 
 document.querySelector("form").addEventListener("submit", function (e) {
@@ -45,13 +45,19 @@ document.querySelector("form").addEventListener("submit", function (e) {
   //add Book to array
   myLibrary.push(book);
 
-  //add Book to DOM
-  let index = myLibrary.indexOf(book);
-  addBook(book, index);
+  displayBooks(myLibrary);
 });
 
+function displayBooks(myLibrary) {
+  const container = document.querySelector(".container");
+  container.replaceChildren()// clears all books on DOM
+  for (let book of myLibrary) {
+    addBook(book, myLibrary.indexOf(book));
+  }
+}
+
 function addBook(book, index) {
-  //display book
+  //add book to DOM
   const container = document.querySelector(".container");
   const card = document.createElement("div");
   card.className = "card";
@@ -64,6 +70,8 @@ function addBook(book, index) {
   button.textContent = "Remove";
   card.appendChild(button);
   button.addEventListener("click", function (e) {
-    alert("REMOVE");
+    card.remove();
+    myLibrary.splice(index, 1);
+    displayBooks(myLibrary);
   });
 }
