@@ -16,17 +16,6 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  // this.info = function () {
-  //   return (
-  //     this.title +
-  //     " by " +
-  //     this.author +
-  //     ", " +
-  //     this.pages +
-  //     " pages, " +
-  //     this.read
-  //   );
-  // };
 }
 
 document.querySelector("form").addEventListener("submit", function (e) {
@@ -50,7 +39,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
 function displayBooks(myLibrary) {
   const container = document.querySelector(".container");
-  container.replaceChildren()// clears all books on DOM
+  container.replaceChildren(); // clears all books on DOM
   for (let book of myLibrary) {
     addBook(book, myLibrary.indexOf(book));
   }
@@ -62,16 +51,30 @@ function addBook(book, index) {
   const card = document.createElement("div");
   card.className = "card";
   card.dataset.index = index;
-  card.textContent = book.title + " " + index;
+  card.textContent = book.title + " " + index + "\n" + book.read;
   container.appendChild(card);
 
   //remove button
-  const button = document.createElement("button");
-  button.textContent = "Remove";
-  card.appendChild(button);
-  button.addEventListener("click", function (e) {
+  const remove = document.createElement("button");
+  remove.textContent = "Remove";
+  card.appendChild(remove);
+  remove.addEventListener("click", function (e) {
     card.remove();
     myLibrary.splice(index, 1);
     displayBooks(myLibrary);
   });
+
+  //toggle read button
+  const read = document.createElement("button");
+  read.textContent = "Toggle read";
+  card.appendChild(read);
+  read.addEventListener("click", function (e) {
+    book.toggleRead(book);
+    displayBooks(myLibrary);
+  });
 }
+
+Book.prototype.toggleRead = function (book) {
+  if (this.read === "read") this.read = "not read";
+  else this.read = "read";
+};
