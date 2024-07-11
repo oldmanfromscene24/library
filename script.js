@@ -1,6 +1,6 @@
 const myLibrary = [];
 const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("dialog + button");
+const showButton = document.querySelector("dialog + div > button");
 const closeButton = document.querySelector("dialog > button");
 
 showButton.addEventListener("click", () => {
@@ -49,32 +49,51 @@ function addBook(book, index) {
   //add book to DOM
   const container = document.querySelector(".container");
   const card = document.createElement("div");
-  card.className = "card";
   card.dataset.index = index;
-  const title = book.title;
-  const author = book.author;
-  const pages = book.pages;
-  card.textContent = title + "\n" + author + "\n" + pages + "\n";
+  card.className = "card";
   container.appendChild(card);
 
-  //toggle read button
-  const read = document.createElement("button");
+  const title = document.createElement("div");
+  title.className = "title";
+  title.textContent = "TITLE: " + book.title;
+  card.appendChild(title);
+
+  const author = document.createElement("div");
+  author.className = "author";
+  author.textContent = "AUTHOR: " + book.author;
+  card.appendChild(author);
+
+  const pages = document.createElement("div");
+  pages.className = "pages";
+  pages.textContent = "PAGES: " + book.pages;
+  card.appendChild(pages);
+
+  const read = document.createElement("div");
   read.className = "read";
-  read.textContent = book.read;
-  if (book.read === "read") read.style.backgroundColor = "green";
-  else read.style.backgroundColor = "red";
   card.appendChild(read);
-  read.addEventListener("click", function (e) {
+
+  const remove = document.createElement("div");
+  remove.className = "remove";
+  card.appendChild(remove);
+
+  //toggle read button
+  const readButton = document.createElement("button");
+  readButton.className = "readButton";
+  readButton.textContent = book.read;
+  if (book.read === "read") readButton.style.backgroundColor = "lightgreen";
+  else readButton.style.backgroundColor = "lightcoral";
+  read.appendChild(readButton);
+  readButton.addEventListener("click", function (e) {
     book.toggleRead(book);
     displayBooks(myLibrary);
   });
 
   //remove button
-  const remove = document.createElement("button");
-  remove.className = "remove";
-  remove.textContent = "Remove";
-  card.appendChild(remove);
-  remove.addEventListener("click", function (e) {
+  const removeButton = document.createElement("button");
+  removeButton.className = "removeButton";
+  removeButton.textContent = "X";
+  remove.appendChild(removeButton);
+  removeButton.addEventListener("click", function (e) {
     card.remove();
     myLibrary.splice(index, 1);
     displayBooks(myLibrary);

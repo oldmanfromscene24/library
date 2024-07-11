@@ -1,16 +1,56 @@
+body {
+  background-color: #f6eee3;
+}
+
+dialog,
+fieldset > input {
+  background-color: antiquewhite;
+}
+
+#addBook > button {
+  display: block;
+  margin: 2rem auto;
+  font-size: 2rem;
+  border: none;
+  color: 	#505050;
+  background-image: url("card.jpg");
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
+#addBook > button:hover {
+  transform: scale(1.1);
+}
+
 .card {
-  border: 1px solid red;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-image: url("card.jpg");
 }
 
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.card {
-  white-space: pre;
+.readButton {
+  border: none;
+  border-radius: 1rem;
 }
 
-.remove {
+.removeButton {
   display: block;
+  margin: auto;
+  border: none;
+  padding: 0;
+  color: red;
+  size: 0.5rem;
+  background-color: #f6eee3;
+}
+
+footer {
+  position: absolute;
+  bottom: 1rem;
 }
