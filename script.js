@@ -51,25 +51,32 @@ function addBook(book, index) {
   const card = document.createElement("div");
   card.className = "card";
   card.dataset.index = index;
-  card.textContent = book.title + " " + index + "\n" + book.read;
+  const title = book.title;
+  const author = book.author;
+  const pages = book.pages;
+  card.textContent = title + "\n" + author + "\n" + pages + "\n";
   container.appendChild(card);
+
+  //toggle read button
+  const read = document.createElement("button");
+  read.className = "read";
+  read.textContent = book.read;
+  if (book.read === "read") read.style.backgroundColor = "green";
+  else read.style.backgroundColor = "red";
+  card.appendChild(read);
+  read.addEventListener("click", function (e) {
+    book.toggleRead(book);
+    displayBooks(myLibrary);
+  });
 
   //remove button
   const remove = document.createElement("button");
+  remove.className = "remove";
   remove.textContent = "Remove";
   card.appendChild(remove);
   remove.addEventListener("click", function (e) {
     card.remove();
     myLibrary.splice(index, 1);
-    displayBooks(myLibrary);
-  });
-
-  //toggle read button
-  const read = document.createElement("button");
-  read.textContent = "Toggle read";
-  card.appendChild(read);
-  read.addEventListener("click", function (e) {
-    book.toggleRead(book);
     displayBooks(myLibrary);
   });
 }
